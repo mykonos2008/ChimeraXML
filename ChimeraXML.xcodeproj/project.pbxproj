@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		BA7E2F5B180C1F43005782D3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA7E2F5A180C1F43005782D3 /* Foundation.framework */; };
 		BA7E2F70180C1F90005782D3 /* ChimeraParser.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7E2F69180C1F90005782D3 /* ChimeraParser.m */; };
-		BA7E2F71180C1F90005782D3 /* ElementInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7E2F6B180C1F90005782D3 /* ElementInfo.m */; };
-		BA7E2F72180C1F90005782D3 /* PropertyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7E2F6D180C1F90005782D3 /* PropertyInfo.m */; };
-		BA7E2F73180C1F90005782D3 /* XmlEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7E2F6F180C1F90005782D3 /* XmlEntity.m */; };
+		BA7E2F71180C1F90005782D3 /* CPElementInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7E2F6B180C1F90005782D3 /* CPElementInfo.m */; };
+		BA7E2F72180C1F90005782D3 /* CPPropertyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7E2F6D180C1F90005782D3 /* CPPropertyInfo.m */; };
+		BA7E2F73180C1F90005782D3 /* CPXmlEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7E2F6F180C1F90005782D3 /* CPXmlEntity.m */; };
 		BA7E2F76180C1FBF005782D3 /* ChimeraParser.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = BA7E2F68180C1F90005782D3 /* ChimeraParser.h */; };
-		BA7E2F77180C1FBF005782D3 /* ElementInfo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = BA7E2F6A180C1F90005782D3 /* ElementInfo.h */; };
-		BA7E2F78180C1FBF005782D3 /* PropertyInfo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = BA7E2F6C180C1F90005782D3 /* PropertyInfo.h */; };
-		BA7E2F79180C1FBF005782D3 /* XmlEntity.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = BA7E2F6E180C1F90005782D3 /* XmlEntity.h */; };
+		BA7E2F77180C1FBF005782D3 /* CPElementInfo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = BA7E2F6A180C1F90005782D3 /* CPElementInfo.h */; };
+		BA7E2F78180C1FBF005782D3 /* CPPropertyInfo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = BA7E2F6C180C1F90005782D3 /* CPPropertyInfo.h */; };
+		BA7E2F79180C1FBF005782D3 /* CPXmlEntity.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = BA7E2F6E180C1F90005782D3 /* CPXmlEntity.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,9 +26,9 @@
 			dstSubfolderSpec = 16;
 			files = (
 				BA7E2F76180C1FBF005782D3 /* ChimeraParser.h in CopyFiles */,
-				BA7E2F77180C1FBF005782D3 /* ElementInfo.h in CopyFiles */,
-				BA7E2F78180C1FBF005782D3 /* PropertyInfo.h in CopyFiles */,
-				BA7E2F79180C1FBF005782D3 /* XmlEntity.h in CopyFiles */,
+				BA7E2F77180C1FBF005782D3 /* CPElementInfo.h in CopyFiles */,
+				BA7E2F78180C1FBF005782D3 /* CPPropertyInfo.h in CopyFiles */,
+				BA7E2F79180C1FBF005782D3 /* CPXmlEntity.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,12 +40,12 @@
 		BA7E2F5E180C1F43005782D3 /* ChimeraXML-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ChimeraXML-Prefix.pch"; sourceTree = "<group>"; };
 		BA7E2F68180C1F90005782D3 /* ChimeraParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChimeraParser.h; sourceTree = "<group>"; };
 		BA7E2F69180C1F90005782D3 /* ChimeraParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChimeraParser.m; sourceTree = "<group>"; };
-		BA7E2F6A180C1F90005782D3 /* ElementInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElementInfo.h; sourceTree = "<group>"; };
-		BA7E2F6B180C1F90005782D3 /* ElementInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElementInfo.m; sourceTree = "<group>"; };
-		BA7E2F6C180C1F90005782D3 /* PropertyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertyInfo.h; sourceTree = "<group>"; };
-		BA7E2F6D180C1F90005782D3 /* PropertyInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertyInfo.m; sourceTree = "<group>"; };
-		BA7E2F6E180C1F90005782D3 /* XmlEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlEntity.h; sourceTree = "<group>"; };
-		BA7E2F6F180C1F90005782D3 /* XmlEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlEntity.m; sourceTree = "<group>"; };
+		BA7E2F6A180C1F90005782D3 /* CPElementInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPElementInfo.h; sourceTree = "<group>"; };
+		BA7E2F6B180C1F90005782D3 /* CPElementInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPElementInfo.m; sourceTree = "<group>"; };
+		BA7E2F6C180C1F90005782D3 /* CPPropertyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPropertyInfo.h; sourceTree = "<group>"; };
+		BA7E2F6D180C1F90005782D3 /* CPPropertyInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPropertyInfo.m; sourceTree = "<group>"; };
+		BA7E2F6E180C1F90005782D3 /* CPXmlEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPXmlEntity.h; sourceTree = "<group>"; };
+		BA7E2F6F180C1F90005782D3 /* CPXmlEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPXmlEntity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,12 +90,12 @@
 			children = (
 				BA7E2F68180C1F90005782D3 /* ChimeraParser.h */,
 				BA7E2F69180C1F90005782D3 /* ChimeraParser.m */,
-				BA7E2F6A180C1F90005782D3 /* ElementInfo.h */,
-				BA7E2F6B180C1F90005782D3 /* ElementInfo.m */,
-				BA7E2F6C180C1F90005782D3 /* PropertyInfo.h */,
-				BA7E2F6D180C1F90005782D3 /* PropertyInfo.m */,
-				BA7E2F6E180C1F90005782D3 /* XmlEntity.h */,
-				BA7E2F6F180C1F90005782D3 /* XmlEntity.m */,
+				BA7E2F6A180C1F90005782D3 /* CPElementInfo.h */,
+				BA7E2F6B180C1F90005782D3 /* CPElementInfo.m */,
+				BA7E2F6C180C1F90005782D3 /* CPPropertyInfo.h */,
+				BA7E2F6D180C1F90005782D3 /* CPPropertyInfo.m */,
+				BA7E2F6E180C1F90005782D3 /* CPXmlEntity.h */,
+				BA7E2F6F180C1F90005782D3 /* CPXmlEntity.m */,
 				BA7E2F5D180C1F43005782D3 /* Supporting Files */,
 			);
 			path = ChimeraXML;
@@ -161,9 +161,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA7E2F70180C1F90005782D3 /* ChimeraParser.m in Sources */,
-				BA7E2F71180C1F90005782D3 /* ElementInfo.m in Sources */,
-				BA7E2F72180C1F90005782D3 /* PropertyInfo.m in Sources */,
-				BA7E2F73180C1F90005782D3 /* XmlEntity.m in Sources */,
+				BA7E2F71180C1F90005782D3 /* CPElementInfo.m in Sources */,
+				BA7E2F72180C1F90005782D3 /* CPPropertyInfo.m in Sources */,
+				BA7E2F73180C1F90005782D3 /* CPXmlEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +266,7 @@
 				BA7E2F67180C1F43005782D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

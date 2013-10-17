@@ -2,9 +2,9 @@
 //  XmlParser.m
 
 #import "ChimeraParser.h"
-#import "ElementInfo.h"
-#import "XmlEntity.h"
-#import "PropertyInfo.h"
+#import "CPElementInfo.h"
+#import "CPXmlEntity.h"
+#import "CPPropertyInfo.h"
 
 #import <objc/runtime.h>
 
@@ -46,7 +46,7 @@
     //ルート要素の場合
     if([_elementStack count] == 0){
         //最上位階層の情報を管理するElementInfoを生成し、Stackにつめる
-        ElementInfo *info = [[ElementInfo alloc] init];
+        CPElementInfo *info = [[CPElementInfo alloc] init];
         info.elementName = elementName;
         info.target = _rootObject;
 
@@ -55,11 +55,11 @@
     //ルート要素以外の場合
     else{
         //親要素の情報を取り出す
-        ElementInfo *parent = [_elementStack lastObject];
+        CPElementInfo *parent = [_elementStack lastObject];
         
         //親要素がコレクションの場合
         if([parent.target isKindOfClass:[NSArray class]]){
-            ElementInfo *info = [[ElementInfo alloc] init];
+            CPElementInfo *info = [[CPElementInfo alloc] init];
             info.elementName = elementName;
             info.target = [[parent.propInfo.subType alloc] init];
             [parent.target addObject:info.target];
@@ -67,7 +67,7 @@
         }
         else{
             //Userクラスから要素に対応するプロパティの情報を取得する
-            PropertyInfo *propInfo =[[parent.target class] propertyInfoForElement:elementName];
+            CPPropertyInfo *propInfo =[[parent.target class] propertyInfoForElement:elementName];
             if(!propInfo){
                 return;
             }
@@ -76,7 +76,7 @@
             if(prop){
                
                 //要素を管理するElementInfoを生成し、Stackにつめる
-                ElementInfo *info = [[ElementInfo alloc] init];
+                CPElementInfo *info = [[CPElementInfo alloc] init];
                 info.elementName = elementName;
                 info.propInfo = propInfo;
                 
@@ -110,12 +110,12 @@
 {
     if(_depth == [_elementStack count]){
         //スタックにつめられている最後のオブジェクトを取得し、その要素名が引数のelementNameと一致するか判定する
-        ElementInfo *lastElement = [_elementStack lastObject];
+        CPElementInfo *lastElement = [_elementStack lastObject];
         if([lastElement.elementName isEqualToString:elementName]){
             //targetオブジェクトがNSMutableStringの場合(テキストノードの場合）
             if([lastElement.target isKindOfClass:[NSMutableString class]]){
                 //もう一つ上の階層のオブジェクトのプロパティにテキストノードの値を設定する
-                ElementInfo *parentElement = [_elementStack objectAtIndex:[_elementStack count] -2];
+                CPElementInfo *parentElement = [_elementStack objectAtIndex:[_elementStack count] -2];
                 
                 if(lastElement.propInfo.type == [NSString class]) {
                     [parentElement.target setValue:lastElement.target forKey:lastElement.propInfo.name];
@@ -136,7 +136,7 @@
 -(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
     //stackの最後のオブジェクトがNSMutableStringの場合、テキストノードの値をそれにつめる
-    ElementInfo *lastElement = [_elementStack lastObject];
+    CPElementInfo *lastElement = [_elementStack lastObject];
     if([lastElement.target isKindOfClass:[NSMutableString class]]){
         [((NSMutableString *)lastElement.target) appendString:string];
     }

@@ -2,9 +2,9 @@
 //  ElementInfo.h
 
 #import <Foundation/Foundation.h>
-#import "PropertyInfo.h"
+#import "CPPropertyInfo.h"
 
-@interface ElementInfo : NSObject
+@interface CPElementInfo : NSObject
 
 //一つ下の階層の要素の値をセットする先となるオブジェクト
 @property(strong,nonatomic) id target;
@@ -13,6 +13,6 @@
 @property(strong,nonatomic) NSString *elementName;
 
 //要素に対応するプロパティの情報を管理するオブジェクト
-@property(strong,nonatomic) PropertyInfo *propInfo;
+@property(strong,nonatomic) CPPropertyInfo *propInfo;
 
 @end

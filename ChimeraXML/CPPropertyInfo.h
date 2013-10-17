@@ -4,7 +4,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PropertyInfo : NSObject
+@interface CPPropertyInfo : NSObject
 
 @property(strong,nonatomic) NSString *name;
 @property(strong,nonatomic) Class type;
