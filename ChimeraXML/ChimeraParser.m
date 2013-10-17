@@ -25,6 +25,15 @@
     return self;
 }
 
+-(id)parse:(NSData *)data
+{
+    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
+    parser.delegate = self;
+    [parser parse];
+    
+    return _rootObject;
+}
+
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
     if(_depth > [_elementStack count]){
