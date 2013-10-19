@@ -61,7 +61,13 @@
         if([parent.target isKindOfClass:[NSArray class]]){
             CPElementInfo *info = [[CPElementInfo alloc] init];
             info.elementName = elementName;
-            info.target = [[parent.propInfo.subType alloc] init];
+            
+            if(parent.propInfo.subType == [NSString class] || parent.propInfo.subType == [NSNumber class]) {
+                info.target = [[NSMutableString alloc] init];
+            }
+            else {
+                info.target = [[parent.propInfo.subType alloc] init];
+            }
             [parent.target addObject:info.target];
             [_elementStack addObject:info];
         }
@@ -117,13 +123,22 @@
                 //もう一つ上の階層のオブジェクトのプロパティにテキストノードの値を設定する
                 CPElementInfo *parentElement = [_elementStack objectAtIndex:[_elementStack count] -2];
                 
-                if(lastElement.propInfo.type == [NSString class]) {
-                    [parentElement.target setValue:lastElement.target forKey:lastElement.propInfo.name];
+                if(parentElement.propInfo.type == [NSArray class] || parentElement.propInfo.type == [NSMutableArray class]) {
+                    if(lastElement.propInfo.type == [NSNumber class]){
+                        [parentElement.target removeObject:lastElement.target];
+                        int intValue = [lastElement.target intValue];
+                        [parentElement.target addObject:[NSNumber numberWithInt:intValue]];
+                    }
                 }
-                else if(lastElement.propInfo.type == [NSNumber class]){
-                    int intValue = [lastElement.target intValue];
-                    [parentElement.target setValue:[NSNumber numberWithInt:intValue] forKey:lastElement.propInfo.name];
-                }           
+                else {
+                    if(lastElement.propInfo.type == [NSString class]) {
+                        [parentElement.target setValue:lastElement.target forKey:lastElement.propInfo.name];
+                    }
+                    else if(lastElement.propInfo.type == [NSNumber class]){
+                        int intValue = [lastElement.target intValue];
+                        [parentElement.target setValue:[NSNumber numberWithInt:intValue] forKey:lastElement.propInfo.name];
+                    }
+                }
             }
         }
         
