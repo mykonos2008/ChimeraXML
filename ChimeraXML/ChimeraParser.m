@@ -84,6 +84,23 @@
             objc_property_t prop =  class_getProperty([parent.target class], [propInfo.name UTF8String]);
             if(prop){
                
+                if(!propInfo.type) {
+                    //プロパティの型を取得する
+                    NSString *attributes = [NSString stringWithUTF8String:property_getAttributes(prop)];
+                    NSRegularExpression *reg = [[NSRegularExpression alloc] initWithPattern:@"^T@\"(.*)\",.*"
+                                                                options:NSRegularExpressionCaseInsensitive error:nil];
+                    NSArray *matches = [reg matchesInString:attributes options:0 range:NSMakeRange(0, attributes.length)];
+                    
+                    for (NSTextCheckingResult *result in matches) {
+                        for (int i = 0; i < [result numberOfRanges]; i++) {
+                            if(i == 1) {
+                                NSRange range = [result rangeAtIndex:i];
+                                propInfo.type = NSClassFromString([attributes substringWithRange:range]);
+                            }
+                        }
+                    }
+                }
+                
                 //要素を管理するElementInfoを生成し、Stackにつめる
                 CPElementInfo *info = [[CPElementInfo alloc] init];
                 info.elementName = elementName;
