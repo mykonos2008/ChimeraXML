@@ -5,7 +5,7 @@
 
 @implementation CPXmlEntity
 
-+(CPPropertyInfo *)propertyInfoForElement:(NSString *)element
++(id)propertyInfoForElement:(NSString *)element
 {
     return nil;
 }

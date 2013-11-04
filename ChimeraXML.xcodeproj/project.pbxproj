@@ -16,6 +16,7 @@
 		BA7E2F77180C1FBF005782D3 /* CPElementInfo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = BA7E2F6A180C1F90005782D3 /* CPElementInfo.h */; };
 		BA7E2F78180C1FBF005782D3 /* CPPropertyInfo.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = BA7E2F6C180C1F90005782D3 /* CPPropertyInfo.h */; };
 		BA7E2F79180C1FBF005782D3 /* CPXmlEntity.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = BA7E2F6E180C1F90005782D3 /* CPXmlEntity.h */; };
+		BADF8EEF182775D800551BC6 /* CPPropertyCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BADF8EEE182775D800551BC6 /* CPPropertyCache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,6 +47,8 @@
 		BA7E2F6D180C1F90005782D3 /* CPPropertyInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPropertyInfo.m; sourceTree = "<group>"; };
 		BA7E2F6E180C1F90005782D3 /* CPXmlEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPXmlEntity.h; sourceTree = "<group>"; };
 		BA7E2F6F180C1F90005782D3 /* CPXmlEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPXmlEntity.m; sourceTree = "<group>"; };
+		BADF8EED182775D800551BC6 /* CPPropertyCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPropertyCache.h; sourceTree = "<group>"; };
+		BADF8EEE182775D800551BC6 /* CPPropertyCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPPropertyCache.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +99,8 @@
 				BA7E2F6D180C1F90005782D3 /* CPPropertyInfo.m */,
 				BA7E2F6E180C1F90005782D3 /* CPXmlEntity.h */,
 				BA7E2F6F180C1F90005782D3 /* CPXmlEntity.m */,
+				BADF8EED182775D800551BC6 /* CPPropertyCache.h */,
+				BADF8EEE182775D800551BC6 /* CPPropertyCache.m */,
 				BA7E2F5D180C1F43005782D3 /* Supporting Files */,
 			);
 			path = ChimeraXML;
@@ -162,6 +167,7 @@
 			files = (
 				BA7E2F70180C1F90005782D3 /* ChimeraParser.m in Sources */,
 				BA7E2F71180C1F90005782D3 /* CPElementInfo.m in Sources */,
+				BADF8EEF182775D800551BC6 /* CPPropertyCache.m in Sources */,
 				BA7E2F72180C1F90005782D3 /* CPPropertyInfo.m in Sources */,
 				BA7E2F73180C1F90005782D3 /* CPXmlEntity.m in Sources */,
 			);

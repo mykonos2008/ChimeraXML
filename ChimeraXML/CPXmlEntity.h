@@ -8,6 +8,6 @@
 
 @interface CPXmlEntity : NSObject
 
-+(CPPropertyInfo *)propertyInfoForElement:(NSString *)element;
++(id)propertyInfoForElement:(NSString *)element;
 
 @end

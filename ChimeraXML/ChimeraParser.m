@@ -5,6 +5,7 @@
 #import "CPElementInfo.h"
 #import "CPXmlEntity.h"
 #import "CPPropertyInfo.h"
+#import "CPPropertyCache.h"
 
 #import <objc/runtime.h>
 
@@ -76,10 +77,24 @@
         }
         else{
             //Userクラスから要素に対応するプロパティの情報を取得する
-            CPPropertyInfo *propInfo =[[parent.target class] propertyInfoForElement:elementName];
-            if(!propInfo){
+            id propObject = [[parent.target class] propertyInfoForElement:elementName];
+            if(!propObject) {
                 return;
             }
+            
+            CPPropertyInfo *propInfo = nil;
+            if([propObject isMemberOfClass:[CPPropertyInfo class]]) {
+                propInfo = propObject;
+            }
+            else {
+                propInfo = [CPPropertyCache propertyInfoForClass:NSStringFromClass([parent.target class]) propertyName:propObject];
+                if(!propInfo) {
+                    propInfo = [[CPPropertyInfo alloc] init];
+                    propInfo.name = propObject;
+                    [CPPropertyCache setPropertyInfo:propInfo forClass:NSStringFromClass([parent.target class]) propertyName:propObject];
+                }
+            }
+
             //プロパティが存在しているかチェックする
             objc_property_t prop =  class_getProperty([parent.target class], [propInfo.name UTF8String]);
             if(prop){
