@@ -134,6 +134,11 @@
                     info.target = [NSMutableArray array];
                     [parent.target setValue:info.target forKey:propInfo.name];
                 }
+                //XMLエンティティの場合
+                else if([propInfo.type isSubclassOfClass:[CPXmlEntity class]]) {
+                    info.target = [[propInfo.type alloc] init];
+                    [parent.target setValue:info.target forKey:propInfo.name];
+                }
                 else{
                     [NSException raise:@"InvalidPropertyException" format:@"Type of Property [%@] cannot be handled.",propInfo.name];
                 }
@@ -162,10 +167,18 @@
                     if(lastElement.propInfo.type == [NSNumber class]){
                         [parentElement.target removeObject:lastElement.target];
                         //check if number
-                        NSRange match = [lastElement.target rangeOfString:@"^[0-9]+$" options:NSRegularExpressionSearch];
+                        NSRange match = [lastElement.target rangeOfString:@"^([1-9]\\d*|0)(\\.\\d+)?$" options:NSRegularExpressionSearch];
                         if(match.location != NSNotFound) {
-                            int intValue = [lastElement.target intValue];
-                            [parentElement.target addObject:[NSNumber numberWithInt:intValue]];
+                            match = [lastElement.target rangeOfString:@"." options:NSCaseInsensitiveSearch];
+                            //check if double
+                            if(match.location != NSNotFound) {
+                                double doubleValue = [lastElement.target doubleValue];
+                                [parentElement.target setValue:[NSNumber numberWithDouble:doubleValue] forKey:lastElement.propInfo.name];
+                            }
+                            else {
+                                int intValue = [lastElement.target intValue];
+                                [parentElement.target setValue:[NSNumber numberWithInt:intValue] forKey:lastElement.propInfo.name];
+                            }
                         }
                     }
                 }
@@ -174,10 +187,19 @@
                         [parentElement.target setValue:lastElement.target forKey:lastElement.propInfo.name];
                     }
                     else if(lastElement.propInfo.type == [NSNumber class]){
-                        NSRange match = [lastElement.target rangeOfString:@"^[0-9]+$" options:NSRegularExpressionSearch];
+                        //check if number
+                        NSRange match = [lastElement.target rangeOfString:@"^([1-9]\\d*|0)(\\.\\d+)?$" options:NSRegularExpressionSearch];
                         if(match.location != NSNotFound) {
-                            int intValue = [lastElement.target intValue];
-                            [parentElement.target setValue:[NSNumber numberWithInt:intValue] forKey:lastElement.propInfo.name];
+                            match = [lastElement.target rangeOfString:@"." options:NSCaseInsensitiveSearch];
+                            //check if double
+                            if(match.location != NSNotFound) {
+                                double doubleValue = [lastElement.target doubleValue];
+                                [parentElement.target setValue:[NSNumber numberWithDouble:doubleValue] forKey:lastElement.propInfo.name];
+                            }
+                            else {
+                                int intValue = [lastElement.target intValue];
+                                [parentElement.target setValue:[NSNumber numberWithInt:intValue] forKey:lastElement.propInfo.name];
+                            }
                         }
                     }
                 }

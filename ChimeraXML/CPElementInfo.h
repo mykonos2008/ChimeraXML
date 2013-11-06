@@ -2,7 +2,7 @@
 //  ElementInfo.h
 
 #import <Foundation/Foundation.h>
-#import "CPPropertyInfo.h"
+@class CPPropertyInfo;
 
 @interface CPElementInfo : NSObject
 
