@@ -173,11 +173,11 @@
                             //check if double
                             if(match.location != NSNotFound) {
                                 double doubleValue = [lastElement.target doubleValue];
-                                [parentElement.target setValue:[NSNumber numberWithDouble:doubleValue] forKey:lastElement.propInfo.name];
+                                [parentElement.target addObject:[NSNumber numberWithDouble:doubleValue]];
                             }
                             else {
                                 int intValue = [lastElement.target intValue];
-                                [parentElement.target setValue:[NSNumber numberWithInt:intValue] forKey:lastElement.propInfo.name];
+                                [parentElement.target addObject:[NSNumber numberWithInt:intValue]];
                             }
                         }
                     }
