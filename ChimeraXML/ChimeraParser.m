@@ -131,8 +131,27 @@
                     if(!propInfo.subType) {
                         [NSException raise:@"InvalidPropertyException" format:@"Subtype must be provided for [%@]",propInfo.name];    
                     }
-                    info.target = [NSMutableArray array];
-                    [parent.target setValue:info.target forKey:propInfo.name];
+                    
+                    if(propInfo.directArray) {
+                        NSMutableArray *parentArray = [parent.target valueForKey:propInfo.name];
+                        if(!parentArray) {
+                            parentArray = [NSMutableArray array];
+                            [parent.target setValue:parentArray forKey:propInfo.name];
+                        }                        
+                     
+                        if(propInfo.subType == [NSString class] || propInfo.subType == [NSNumber class]) {
+                            info.target = [[NSMutableString alloc] init];
+                        }
+                        else {
+                            info.target = [[propInfo.subType alloc] init];
+                        }
+                        [parentArray addObject:info.target];
+                        info.directParentArray = parentArray;
+                    }
+                    else {
+                       info.target = [NSMutableArray array];
+                       [parent.target setValue:info.target forKey:propInfo.name];
+                    }
                 }
                 //XMLエンティティの場合
                 else if([propInfo.type isSubclassOfClass:[CPXmlEntity class]]) {
@@ -163,9 +182,20 @@
                 //もう一つ上の階層のオブジェクトのプロパティにテキストノードの値を設定する
                 CPElementInfo *parentElement = [_elementStack objectAtIndex:[_elementStack count] -2];
                 
-                if(parentElement.propInfo.type == [NSArray class] || parentElement.propInfo.type == [NSMutableArray class]) {
-                    if(lastElement.propInfo.type == [NSNumber class]){
-                        [parentElement.target removeObject:lastElement.target];
+                if(((parentElement.propInfo.type == [NSArray class] || parentElement.propInfo.type == [NSMutableArray class])
+                     && [parentElement.target isKindOfClass:[NSArray class]])
+                   || lastElement.directParentArray) {
+                    
+                    NSMutableArray *parentArray = nil;
+                    if(lastElement.directParentArray) {
+                        parentArray = lastElement.directParentArray;
+                    }
+                    else {
+                        parentArray = parentElement.target;
+                    }
+                    
+                    if(lastElement.propInfo.type == [NSNumber class] || lastElement.propInfo.subType == [NSNumber class]){
+                        [parentArray removeObject:lastElement.target];
                         //check if number
                         NSRange match = [lastElement.target rangeOfString:@"^([1-9]\\d*|0)(\\.\\d+)?$" options:NSRegularExpressionSearch];
                         if(match.location != NSNotFound) {
@@ -173,11 +203,11 @@
                             //check if double
                             if(match.location != NSNotFound) {
                                 double doubleValue = [lastElement.target doubleValue];
-                                [parentElement.target addObject:[NSNumber numberWithDouble:doubleValue]];
+                                [parentArray addObject:[NSNumber numberWithDouble:doubleValue]];
                             }
                             else {
                                 int intValue = [lastElement.target intValue];
-                                [parentElement.target addObject:[NSNumber numberWithInt:intValue]];
+                                [parentArray addObject:[NSNumber numberWithInt:intValue]];
                             }
                         }
                     }

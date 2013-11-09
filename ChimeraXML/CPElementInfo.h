@@ -15,4 +15,7 @@
 //要素に対応するプロパティの情報を管理するオブジェクト
 @property(strong,nonatomic) CPPropertyInfo *propInfo;
 
+//同じ要素が同階層で繰り返す場合の格納先
+@property(strong,nonatomic) NSMutableArray *directParentArray;
+
 @end
