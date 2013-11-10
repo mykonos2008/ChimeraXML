@@ -11,6 +11,7 @@
 
 @implementation ChimeraParser{
     
+    Class _targetClass;
     NSMutableArray *_elementStack;
     id _rootObject; //デシリアライズ結果のオブジェクト
     int _depth; //現在処理しているXMLの階層を示す変数
@@ -21,7 +22,7 @@
     self = [super init];
     if(self){
         _elementStack = [NSMutableArray array];
-        _rootObject = [[targetClass alloc] init];
+        _targetClass = targetClass;
     }
     return self;
 }
@@ -33,6 +34,13 @@
     [parser parse];
     
     return _rootObject;
+}
+
+- (void)parserDidStartDocument:(NSXMLParser *)parser
+{
+    _rootObject = [[_targetClass alloc] init];
+    [_elementStack removeAllObjects];
+    _depth = 0;
 }
 
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
